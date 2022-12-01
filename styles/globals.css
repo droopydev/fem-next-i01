@@ -61,3 +61,19 @@ a {
         background: black;
     }
 }
+
+/* SwiperJS custom styling */
+.swiper-pagination-bullet-active {
+    background-color: hsl(12 88% 59%) !important;
+}
+
+.swiper-pagination {
+    display: flex !important;
+    position: static !important;
+    justify-content: center !important;
+    padding: 2rem 0 !important;
+}
+
+.swiper-slide {
+    height: auto !important;
+}

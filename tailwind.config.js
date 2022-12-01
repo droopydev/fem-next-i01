@@ -11,7 +11,7 @@ module.exports = {
         textColor: {
             black: 'hsl(228, 39%, 23%)',
             white: 'hsl(0, 0%, 100%)',
-            gray: 'hsl(227, 12%, 61%)',
+            gray: '#666E75',
             red: 'hsl(12, 88%, 59%)',
         },
         extend: {

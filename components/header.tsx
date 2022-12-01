@@ -72,14 +72,21 @@ const Navigation = () => {
             : document.querySelector('body')?.classList.remove('pause-scroll')
     }, [showMenu])
 
+    const closeMenu = useCallback(() => {
+        if (showMenu) {
+            setShowMenu(false)
+            document.querySelector('body')?.classList.remove('pause-scroll')
+        }
+    }, [showMenu])
+
     useEffect(() => {
         // subscribe to next/router event
-        events.on('routeChangeStart', toggleMenu)
+        events.on('routeChangeStart', closeMenu)
         return () => {
             // unsubscribe to event on unmount to prevent memory leak
-            events.off('routeChangeStart', toggleMenu)
+            events.off('routeChangeStart', closeMenu)
         }
-    }, [toggleMenu, events])
+    }, [closeMenu, events])
 
     const navStyle = showMenu
         ? 'fixed z-10 h-full w-full bg-red-full [&>div]:pr-[15px] lg:static lg:z-0 lg:bg-transparent'
@@ -95,11 +102,11 @@ const Navigation = () => {
 
     const liStyle = showMenu
         ? 'text-2xl font-medium text-white lg:text-lg lg:text-black'
-        : 'text-lg  text-black font-medium'
+        : 'text-lg  text-black font-medium hover:opacity-50 hover:text-black'
 
     return (
-        <nav className={navStyle}>
-            <div className="mx-auto flex w-11/12 max-w-screen-xl items-center justify-between py-8">
+        <nav className={navStyle} aria-label="main">
+            <div className="mx-auto flex w-11/12 max-w-screen-xl items-center justify-between py-8 md:w-10/12">
                 <div>
                     <Image
                         src={Logo}
@@ -121,7 +128,7 @@ const Navigation = () => {
                     </ul>
                 </div>
                 <div className="hidden lg:inline-block">
-                    <Button color="primary" url="/">
+                    <Button variant="primary" internalHref="/">
                         Get Started
                     </Button>
                 </div>

@@ -42,9 +42,9 @@ interface SocialMediaConfig {
 }
 
 export const SocialMedia: SocialMediaConfig[] = [
-    { name: 'Facebook', icon: iconFacebook, url: '/' },
-    { name: 'Youtube', icon: iconYoutube, url: '/' },
-    { name: 'Twitter', icon: iconTwitter, url: '/' },
-    { name: 'Pinterest', icon: iconPinterest, url: '/' },
-    { name: 'Instagram', icon: iconInstagram, url: '/' },
+    { name: 'Facebook', icon: iconFacebook, url: 'www.facebook.com' },
+    { name: 'Youtube', icon: iconYoutube, url: 'www.youtube.com' },
+    { name: 'Twitter', icon: iconTwitter, url: 'www.twitter.com' },
+    { name: 'Pinterest', icon: iconPinterest, url: 'www.pinterest.com' },
+    { name: 'Instagram', icon: iconInstagram, url: 'www.instagram.com' },
 ]

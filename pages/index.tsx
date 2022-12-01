@@ -1,5 +1,10 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Pagination } from 'swiper'
+
+import 'swiper/css'
+import 'swiper/css/pagination'
 
 import Header from '../components/header'
 import Footer from '../components/footer'
@@ -7,6 +12,9 @@ import Button from '../components/button'
 import IllustrationImage from '../public/illustration-intro.svg?url'
 
 import avatarAnisha from '../public/avatar-anisha.png?url'
+import avatarAli from '../public/avatar-ali.png?url'
+import avatarRichard from '../public/avatar-richard.png?url'
+import avatarShanai from '../public/avatar-shanai.png?url'
 
 export default function Home() {
     return (
@@ -31,10 +39,10 @@ export default function Home() {
     )
 }
 
-const SectionAboveFold: React.FC = () => {
+const SectionAboveFold = () => {
     return (
         <section className="mx-auto w-10/12 max-w-screen-xl pt-16 pb-28">
-            <div className=" absolute top-0 right-0 -z-10 h-1/2 w-full overflow-hidden md:h-3/4 md:w-1/2">
+            <div className=" absolute top-0 right-0 -z-10 h-1/2 w-full max-w-xl overflow-hidden md:h-3/4 md:w-1/2">
                 <div className="h-full w-full translate-x-[40%] -translate-y-[40%] scale-[1.7] transform bg-[url('/bg-tablet-pattern.svg')] bg-contain bg-no-repeat "></div>
             </div>
             <div className="flex flex-col-reverse gap-x-16  md:flex-row  ">
@@ -48,7 +56,7 @@ const SectionAboveFold: React.FC = () => {
                         view.
                     </p>
                     <div>
-                        <Button color="primary" url="/">
+                        <Button variant="primary" internalHref="/">
                             Get Started
                         </Button>
                     </div>
@@ -68,7 +76,7 @@ const SectionAboveFold: React.FC = () => {
     )
 }
 
-const SectionFunctions: React.FC = () => {
+const SectionFunctions = () => {
     const content = [
         {
             title: 'Track company-wide progress',
@@ -89,32 +97,40 @@ const SectionFunctions: React.FC = () => {
         },
     ]
     return (
-        <section className="mx-auto max-w-screen-xl pb-28 text-center leading-relaxed lg:flex lg:w-10/12 lg:gap-8 lg:text-left lg:text-left">
-            <div className="mx-auto w-11/12 pb-8 ">
-                <h2 className="mb-8">What’s different about Manage?</h2>
-                <p className="mx-auto w-3/4 lg:mx-0">
-                    Manage provides all the functionality your team needs,
-                    without the complexity. Our software is tailor-made for
-                    modern digital product teams.
-                </p>
+        <section className="relative">
+            {/* <div className="absolute top-0 right-0 -z-10 h-[400px] w-full -translate-y-[100%] overflow-hidden md:hidden lg:left-0 lg:right-auto lg:block">
+                <div className="h-full w-full translate-x-[60%] transform bg-[url('/bg-tablet-pattern.svg')] bg-contain bg-no-repeat "></div>
+            </div> */}
+
+            <div className="mx-auto max-w-screen-xl pb-28 text-center leading-relaxed lg:flex lg:w-10/12 lg:gap-8 lg:text-left lg:text-left">
+                <div className="mx-auto w-11/12 pb-8 ">
+                    <h2 className="mb-8">What’s different about Manage?</h2>
+                    <p className="mx-auto w-3/4 lg:mx-0">
+                        Manage provides all the functionality your team needs,
+                        without the complexity. Our software is tailor-made for
+                        modern digital product teams.
+                    </p>
+                </div>
+                <ul className="flex flex-col gap-8 pl-4 text-left md:gap-16 md:pl-16">
+                    {content.map((item, index) => {
+                        return (
+                            <li key={index} className="">
+                                <h3 className="text-md mb-4 flex justify-center rounded-l-full bg-red-light lg:bg-transparent">
+                                    <span className="text-full  inline-block rounded-full bg-red-full px-7 py-2 text-white">
+                                        {'0' + (index + 1)}
+                                    </span>
+                                    <span className="ml-4 grow self-center">
+                                        {item.title}
+                                    </span>
+                                </h3>
+                                <p className="text-left md:ml-24">
+                                    {item.desc}
+                                </p>
+                            </li>
+                        )
+                    })}
+                </ul>
             </div>
-            <ul className="flex flex-col gap-8 pl-4 text-left md:pl-16">
-                {content.map((item, index) => {
-                    return (
-                        <li key={index}>
-                            <h3 className="text-md mb-4 flex justify-center rounded-l-full bg-red-light lg:bg-transparent">
-                                <span className="text-full  inline-block rounded-full bg-red-full px-7 py-2 text-white">
-                                    {'0' + (index + 1)}
-                                </span>
-                                <span className="ml-4 grow self-center">
-                                    {item.title}
-                                </span>
-                            </h3>
-                            <p className="text-left">{item.desc}</p>
-                        </li>
-                    )
-                })}
-            </ul>
         </section>
     )
 }
@@ -127,41 +143,73 @@ const SectionTestimonials = () => {
         visibility on larger milestones at all times keeps everyone motivated.`,
             avatar: avatarAnisha,
         },
-        // {
-        //     name: 'Richad Watts',
-        //     testi: `Manage allows us to provide structure and process. It keeps us organized
-        //     and focused. I can’t stop recommending them to everyone I talk to!`,
-        // },
-        // {
-        //     name: 'Shanai Gough',
-        //     testi: `Their software allows us to track, manage and collaborate on our projects
-        //     from anywhere. It keeps the whole team in-sync without being intrusive.`,
-        // },
+        {
+            name: 'Richad Watts',
+            content: `Manage allows us to provide structure and process. It keeps us organized
+            and focused. I can’t stop recommending them to everyone I talk to!`,
+            avatar: avatarRichard,
+        },
+        {
+            name: 'Shanai Gough',
+            content: `Their software allows us to track, manage and collaborate on our projects
+            from anywhere. It keeps the whole team in-sync without being intrusive.`,
+            avatar: avatarShanai,
+        },
+        {
+            name: 'Ali Bravo',
+            content: `We have been able to cancel so many other subscriptions since using 
+            Manage. There is no more cross-channel confusion and everyone is much 
+            more focused.`,
+            avatar: avatarAli,
+        },
     ]
     return (
-        <section className="mx-auto w-11/12 max-w-screen-xl pb-10">
+        <section className="mx-auto w-11/12 max-w-screen-xl pb-20">
             <h2 className="mb-8 text-center">What they&#39;ve said</h2>
             <div className="mb-8">
-                {testimonials.map((testi, i) => {
-                    return (
-                        <div key={i}>
-                            <div className="mx-auto w-20 translate-y-10">
-                                <Image
-                                    src={testi.avatar}
-                                    alt={`Avart of ${testi.name}`}
-                                />
-                            </div>
-                            <div className="bg-very-light-gray p-8 pt-16 text-center">
-                                <h3 className="mb-4">{testi.name}</h3>
-                                <p>{testi.content}</p>
-                            </div>
-                        </div>
-                    )
-                })}
+                <Swiper
+                    modules={[Pagination]}
+                    slidesPerView={1}
+                    direction="horizontal"
+                    centeredSlides={true}
+                    breakpoints={{
+                        '640': {
+                            slidesPerView: 2,
+                        },
+                        '768': {
+                            slidesPerView: 3,
+                            spaceBetween: 40,
+                            centeredSlides: false,
+                        },
+                    }}
+                    spaceBetween={50}
+                    pagination={{
+                        clickable: true,
+                    }}
+                >
+                    {testimonials.map((testi, i) => {
+                        return (
+                            <SwiperSlide key={i}>
+                                <div className="flex h-full flex-col">
+                                    <div className="mx-auto w-20 translate-y-10">
+                                        <Image
+                                            src={testi.avatar}
+                                            alt={`Avart of ${testi.name}`}
+                                        />
+                                    </div>
+                                    <div className="flex-1 bg-very-light-gray p-8 pt-16 text-center">
+                                        <h3 className="mb-4">{testi.name}</h3>
+                                        <p>{testi.content}</p>
+                                    </div>
+                                </div>
+                            </SwiperSlide>
+                        )
+                    })}
+                </Swiper>
             </div>
 
             <div className="flex justify-center">
-                <Button color="primary" url="/">
+                <Button variant="primary" internalHref="/">
                     Get Started
                 </Button>
             </div>
@@ -176,7 +224,7 @@ const SectionSimplify = () => {
                 <h2 className="mb-8 text-4xl font-medium text-white">
                     Simplify how your team works today
                 </h2>
-                <Button color="accent" url="/">
+                <Button variant="accent" internalHref="/">
                     Get Started
                 </Button>
             </div>
